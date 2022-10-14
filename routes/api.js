@@ -45,6 +45,12 @@ var router = express.Router()
 //
 //―――――――――――――――――――――――――――――――――――――――――― ┏  Dowloader  ┓ ―――――――――――――――――――――――――――――――――――――――――― \\
 
+router.get('/anime/waifu', async (req, res, next) => {
+
+var result = await getBuffer('https://raw.githubusercontent.com/veann-xyz/result-daniapi/main/anime/waif.json')
+res.set({'Content-Type': 'image/png'})
+res.send(result)
+})
 
 router.get('/dowloader/fbdown', async (req, res, next) => {
 	var url = req.query.url
