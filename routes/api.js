@@ -972,7 +972,7 @@ router.get('/randomgambar/coffee', async (req, res, next) => {
 
 
 //RANDOM ANIME
-router.get('/wallpaper/waifu', async (req, res, next) => {
+router.get('/randomgambar/waifu', async (req, res, next) => {
 fetch(encodeURI(`https://waifu.pics/api/sfw/waifu`))
 .then(response => response.json())
 .then(async data => {
@@ -998,7 +998,7 @@ res.send(await buffer.buffer())
 res.json(loghandler.error)
 })
 })
-router.get('/wallpaper/husbu', async (req, res, next) => {
+router.get('/randomgambar/husbu', async (req, res, next) => {
 let waif = (await axios.get(`https://raw.githubusercontent.com/Arya-was/endak-tau/main/husbu.json`)).data
 let result = waif[Math.floor(Math.random() * (waif.length))]
 let data = await getBuffer(result)
