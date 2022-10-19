@@ -970,6 +970,71 @@ router.get('/randomgambar/coffee', async (req, res, next) => {
 	res.send(result)
 })
 
+
+//RANDOM ANIME
+router.get('/wallpaper/waifu', async (req, res, next) => {
+fetch(encodeURI(`https://waifu.pics/api/sfw/waifu`))
+.then(response => response.json())
+.then(async data => {
+let result = data;
+let buffer = await fetch(data.url)
+res.type('png')
+res.send(await buffer.buffer())
+})
+.catch(e => {
+res.json(loghandler.error)
+ })
+})
+router.get('/randomgambar/neko', async (req, res, next) => {
+fetch(encodeURI(`https://waifu.pics/api/sfw/neko`))
+.then(response => response.json())
+.then(async data => {
+let result = data;
+let buffer = await fetch(data.url)
+res.type('png')
+res.send(await buffer.buffer())
+})
+.catch(e => {
+res.json(loghandler.error)
+})
+})
+router.get('/wallpaper/husbu', async (req, res, next) => {
+let waif = (await axios.get(`https://raw.githubusercontent.com/Arya-was/endak-tau/main/husbu.json`)).data
+let result = waif[Math.floor(Math.random() * (waif.length))]
+let data = await getBuffer(result)
+await fs.writeFileSync(__path +'/database/waifu.png', data)
+await res.sendFile(__path +'/database/waifu.png')
+await sleep(3000)
+await fs.unlinkSync(__path + '/database/waifu.png')
+})
+router.get('/randomgambar/loli', async (req, res, next) => {
+let waif = (await axios.get(`https://raw.githubusercontent.com/Arya-was/endak-tau/main/loli.json`)).data
+let result = waif[Math.floor(Math.random() * (waif.length))]
+let data = await getBuffer(result)
+await fs.writeFileSync(__path +'/database/waifu.png', data)
+await res.sendFile(__path +'/database/waifu.png')
+await sleep(3000)
+await fs.unlinkSync(__path + '/database/waifu.png')
+})
+router.get('/randomgambar/milf', async (req, res, next) => {
+let waif = (await axios.get(`https://raw.githubusercontent.com/Arya-was/endak-tau/main/milf.json`)).data
+let result = waif[Math.floor(Math.random() * (waif.length))]
+let data = await getBuffer(result)
+await fs.writeFileSync(__path +'/database/waifu.png', data)
+await res.sendFile(__path +'/database/waifu.png')
+await sleep(3000)
+await fs.unlinkSync(__path + '/database/waifu.png')
+})
+router.get('/randomgambar/cosplay', async (req, res, next) => {
+let waif = (await axios.get(`https://raw.githubusercontent.com/Arya-was/endak-tau/main/cosplay.json`)).data
+let result = waif[Math.floor(Math.random() * (waif.length))]
+let data = await getBuffer(result)
+await fs.writeFileSync(__path +'/database/waifu.png', data)
+await res.sendFile(__path +'/database/waifu.png')
+await sleep(3000)
+await fs.unlinkSync(__path + '/database/waifu.png')
+})
+
 // Game
 
 router.get('/game/tembakgambar', async (req, res, next) => {
